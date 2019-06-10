@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Mylabel from './lister.js'
 const a=size=>Array(size).fill(null)
 const Square = props=> 
   <button 
@@ -28,12 +29,15 @@ class Board extends React.Component {
   handleClick(i) {
     const squares = this.state.squares.slice(); //is slice just copies the data? look it up
     squares[i] = this.state.next;
-    this.setState({squares: squares,next:this.state.next=='X'?'O':'X'});
+    this.setState({squares: squares,next:this.state.next==='X'?'O':'X'});
   }  
   renderRow(start){
     return <div className="board-row">{a(3).map((x,pos)=>this.renderSquare(pos+start))}</div> 
   }
   render() {
+    return <div>{this.render2()}{this.render2()}</div>
+  } 
+  render2() {
     const status = 'Next player: '+this.state.next;
     const winner=calculateWinner(this.state.squares)
     return (
@@ -65,7 +69,6 @@ class Game extends React.Component {
 }
 
 // ========================================
-const Mylabel=props=>(<div>{props.text}</div>)
 
 ReactDOM.render(
   <div>
