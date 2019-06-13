@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Mylabel from './lister.js'
+import {Mylabel,Lister} from './lister.js'
 const a=size=>Array(size).fill(null)
 const Square = props=> 
   <button 
@@ -72,9 +72,7 @@ class Game extends React.Component {
 
 ReactDOM.render(
   <div>
-    <Mylabel text='hello'/>
-    <Mylabel  text='worls'/>
-    <Game/><Game/>
+    <Lister />
   </div>
   ,
   document.getElementById('root')
