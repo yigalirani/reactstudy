@@ -3,10 +3,10 @@ export let Mylabel=(props)=>(<div>{props.text}</div>)
 class Input extends React.Component{
 	constructor(props){
 		super(props)
-		this.state=({'text':''})
+		this.state=({'text':'',num_changes:0})
 	}
 	onChange=(e)=>{
-		this.setState({ text: e.target.value });
+		this.setState({ text: e.target.value,num_changes:this.state.num_changes+1 });
 	}
 	onSubmit=(e)=>{
 		e.preventDefault();
@@ -18,7 +18,7 @@ class Input extends React.Component{
 	render(){
 	
 
-		return <form onSubmit={this.onSubmit} >
+		return <form onSubmit={this.onSubmit} >{this.state.num_changes}
 						<input type="text" value={this.state.text} onChange={this.onChange}/>
 				</form>
 	}
