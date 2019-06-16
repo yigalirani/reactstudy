@@ -24,6 +24,7 @@ class Input extends React.Component{
 				</form>
 	}
 }
+var last_lister_state;
 export class  Lister extends React.Component {
 	constructor(){
 		super()
@@ -51,5 +52,14 @@ export class  Lister extends React.Component {
 			this.state.list.map(x=><li key={x.id}> {x.tx}</li>)
 		}</ol></div>
 	}
+  componentDidMount() { //mu ha ha, saving state without using react!!
+  	this.setState(last_lister_state)
+
+  }
+
+  componentWillUnmount() {
+  	last_lister_state=this.state
+
+  }	
 }
 

@@ -19,9 +19,9 @@ function Users() {
   return <h2>Users</h2>;
 }
 
-export function AppRouter() {
-  return (
-    <Router>
+class AppRouter  extends React.Component {
+  render() {
+    return <Router>
       <div>
         <nav>
           <ul>
@@ -38,17 +38,15 @@ export function AppRouter() {
         </nav>
 
         <Route path="/" exact component={Index} />
-        <Route path="/game/" component={Game} />
+        <Route path="/game/" component={Game}/>
         <Route path="/lister/" component={Lister} />
       </div>
     </Router>
-  );
+  }
 }
 
 ReactDOM.render(
-  <div>
     <AppRouter />
-  </div>
   ,
   document.getElementById('root')
 );
