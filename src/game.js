@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 const a=size=>Array(size).fill(null)
 const Square = props=> 
   <button 
