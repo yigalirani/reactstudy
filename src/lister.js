@@ -30,8 +30,6 @@ export class  Lister extends React.Component {
 		super()
 		this.state = {
 			list: [
-					{tx:'hello',id:1},
-					{tx:'world',id:2}
 					],
 			text:'yo'
     	};
@@ -43,6 +41,7 @@ export class  Lister extends React.Component {
 		var list=this.state.list
 		list.push(x)
 		this.setState({list,text:''})
+		localStorage.setItem('lister', JSON.stringify(this.state.list));
 	}
 
 	
@@ -53,7 +52,8 @@ export class  Lister extends React.Component {
 		}</ol></div>
 	}
   componentDidMount() { //mu ha ha, saving state without using react!!
-  	this.setState(last_lister_state)
+  	var list =JSON.parse(localStorage.getItem('lister')||'[]')
+  	this.setState({list})
 
   }
 
