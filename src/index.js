@@ -14,9 +14,9 @@ function Tiker() {
     setCount(count => count + 1)
   }
   useEffect(() => {
-    var timerID = setInterval(_=>
-      setCount(count=>count+1)//setCount(count+1) wont work
-    , 1000);
+    var timerID = setInterval(_ =>
+      setCount(count => count + 1)//setCount(count+1) wont work
+      , 1000);
     console.log('setinterval', count)
 
     return function cleanup() {
@@ -25,12 +25,12 @@ function Tiker() {
     };
   }, [count]);
   return <div>
-      this is ticker   
-      <button onClick={() => 
-        setCount(count + 1)//setCount(count+1) does work
-      }>up </button>
-      {count}
-      </div>
+    this is ticker
+      <button onClick={() =>
+      setCount(count + 1)//setCount(count+1) does work
+    }>up </button>
+    {count}
+  </div>
 }
 
 class ClassTiker extends React.Component {
@@ -49,7 +49,7 @@ class ClassTiker extends React.Component {
     return <span>this is classticker{this.state.count}</span>
   }
 }
-var  MyDiv = ({children}) => <div className='high'> {children} {children}</div>
+var MyDiv = ({ children }) => <div className='high'> {children} {children}</div>
 function Index() {
   return <MyDiv><h2>Home</h2>
     <Tiker />
@@ -79,32 +79,51 @@ function Example() {
     </div>
   );
 }
-
-class AppRouter extends React.Component {
-
-  render() {
-    return <Router>eee{this.props.r.map(x=>x)}
-      <ul>
-        <li>
-          <Link to="/">Home</Link><Example />
-        </li>
-        <li>
-          <Link to="/game/">Game</Link>
-        </li>
-        <li>
-          <Link to="/lister/">Lister</Link>
-        </li>
-      </ul>
-
-      <Route path="/" exact component={Index} />
-      <Route path="/game/" component={Game} />
-      <Route path="/lister/" component={Lister} />
-    </Router>
-  }
+function eq(a, b) {
+  return a.toLowerCase() == b.toLowerCase()
 }
-//{Index,Game,Lister }
-ReactDOM.render(
-  <AppRouter r={['Index','Game','Lister' ]}/>
-  ,
-  document.getElementById('root')
-);
+function MyRouter({ routes, home }) {
+  var hash = window.location.hash.substr(1)
+  var path = hash.split('/')
+  function find_component() {
+    for (const [name, component] of Object.entries(routes)) {
+      if (eq(name, path[0])) {
+        console.log(name)
+        return new component()
+      }
+    }
+    return home()
+  }
+
+  return find_component()
+}
+
+  class AppRouter extends React.Component {
+
+    render() {
+      return <Router>eee{this.props.r.map(x => x)}
+        <ul>
+          <li>
+            <Link to="/">Home</Link><Example />
+          </li>
+          <li>
+            <Link to="/game/">Game</Link>
+          </li>
+          <li>
+            <Link to="/lister/">Lister</Link>
+          </li>
+        </ul>
+
+        <Route path="/" exact component={Index} />
+        <Route path="/game/" component={Game} />
+        <Route path="/lister/" component={Lister} />
+      </Router>
+    }
+  }
+  //{Index,Game,Lister }
+  ReactDOM.render(
+    <MyRouter home={Index} routes={{ Index, Game, Lister }} />
+    ,
+    document.getElementById('root')
+  );
+//<AppRouter r={['Index','Game','Lister' ]}/>
