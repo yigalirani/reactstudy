@@ -9,7 +9,18 @@ ol, ul {
 .high{
   background:yellowgreen;
 }
+.menu{
+  margin:7px;
+}
+.menu a{
+  padding: 5px;
 
+
+}
+.menu .selected{
+  background: purple;
+  color: white;
+}
 .board-row:after {
   clear: both;
   content: "";

@@ -97,8 +97,13 @@ function MyRouter({ routes,home }) {
         var Home=home
         return <Home/>
     }
+    function calc_cls(x){
+      if (eq(x,path[0]))
+        return 'selected'
+      return ''
+    }
     function Menu(){
-      return <div>{Object.keys(routes).map(x=><a key={x} href={'#'+x}>{x}</a>)}</div>
+      return <div className='menu'>{Object.keys(routes).map(x=><a key={x} className={calc_cls(x)} href={'#'+x}>{x}</a>)}</div>
     }
     return <div><Menu/><Choose/></div>
 }
