@@ -1,18 +1,61 @@
-import React,{useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import './index.css';
-import {Mylabel,Lister} from './lister.js'
-import {Game} from './game.js'
+import { Mylabel, Lister } from './lister.js'
+import { Game } from './game.js'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-function Tiker(){
-  const [count, setCount] = useState(0);
-  setInterval(_=>setCount(count+1),1000)
-  return <span>this is ticker{count}</span>
+
+
+function Tiker() {
+  var [count, setCount] = useState(0);
+  function tick() {
+    console.log('tick', count)
+    setCount(count => count + 1)
+  }
+  useEffect(() => {
+    var timerID = setInterval(_=>
+      setCount(count=>count+1)//setCount(count+1) wont work
+    , 1000);
+    console.log('setinterval', count)
+
+    return function cleanup() {
+      clearInterval(timerID);
+      console.log('clearinterval')
+    };
+  }, [count]);
+  return <div>
+      this is ticker   
+      <button onClick={() => 
+        setCount(count + 1)//setCount(count+1) does work
+      }>up </button>
+      {count}
+      </div>
 }
 
+class ClassTiker extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      count: 0
+    };
+  }
+  componentDidMount() {
+    setInterval(_ => this.setState({ count: this.state.count + 1 }), 1000)
+    console.log('ClassTiker:componentDidMount')
+  }
+
+  render() {
+    return <span>this is classticker{this.state.count}</span>
+  }
+}
+function MyDiv(props){
+  return <div className='high'> {props.children}</div>
+}
 function Index() {
-  return <div><h2>Home</h2><Tiker/></div>
+  return <MyDiv><h2>Home</h2>
+    <Tiker />
+  </MyDiv>
 }
 
 function About() {
@@ -38,33 +81,32 @@ function Example() {
     </div>
   );
 }
-//function Menu(props):
 
-class AppRouter  extends React.Component {
+class AppRouter extends React.Component {
 
   render() {
-    return <Router>
-          <ul>
-            <li>
-              <Link to="/">Home</Link><Example/>
-            </li>
-            <li>
-              <Link to="/game/">Game</Link>
-            </li>
-            <li>
-              <Link to="/lister/">Lister</Link>
-            </li>
-          </ul>
+    return <Router>eee{this.props.r.map(x=>x)}
+      <ul>
+        <li>
+          <Link to="/">Home</Link><Example />
+        </li>
+        <li>
+          <Link to="/game/">Game</Link>
+        </li>
+        <li>
+          <Link to="/lister/">Lister</Link>
+        </li>
+      </ul>
 
-        <Route path="/" exact component={Index} />
-        <Route path="/game/" component={Game} />
-        <Route path="/lister/" component={Lister} />
+      <Route path="/" exact component={Index} />
+      <Route path="/game/" component={Game} />
+      <Route path="/lister/" component={Lister} />
     </Router>
   }
 }
-
+//{Index,Game,Lister }
 ReactDOM.render(
-    <AppRouter />
+  <AppRouter r={['Index','Game','Lister' ]}/>
   ,
   document.getElementById('root')
 );
