@@ -79,9 +79,14 @@ function eq(a,b) {
 }
 
 function MyRouter({ routes,home }) {
-    var hash=window.location.hash.substr(1)
+    const get_hash=_=>window.location.hash.substr(1)
+    var [hash,setHash]=useState(get_hash());
     var path=hash.split('/')
-
+    function subsribe_to_hash(){
+      window.addEventListener("hashchange",_=>setHash(get_hash()))
+      return _=>window.removeEventListener("hashchange")
+    }
+    useEffect(subsribe_to_hash,[])
     function Choose() {
         for(const [name,Component] of Object.entries(routes)) {
             if(eq(name,path[0])) {
@@ -93,7 +98,7 @@ function MyRouter({ routes,home }) {
         return <Home/>
     }
     function Menu(){
-      return <div>{Object.keys(routes).map(x=><a href={'#'+x}>{x}</a>)}</div>
+      return <div>{Object.keys(routes).map(x=><a key={x} href={'#'+x}>{x}</a>)}</div>
     }
     return <div><Menu/><Choose/></div>
 }
