@@ -49,9 +49,7 @@ class ClassTiker extends React.Component {
     return <span>this is classticker{this.state.count}</span>
   }
 }
-function MyDiv(props){
-  return <div className='high'> {props.children}</div>
-}
+var  MyDiv = ({children}) => <div className='high'> {children} {children}</div>
 function Index() {
   return <MyDiv><h2>Home</h2>
     <Tiker />
