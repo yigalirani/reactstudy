@@ -1,12 +1,15 @@
 import React, { Component,useState, useEffect }  from 'react';
 
 export let Mylabel=(props)=>(<div>{props.text}</div>)
-function Input ({onEnter}){//trickster input: shows num changes, replaces dwight with diapers
+function Input ({onEnter,onChanged}){//trickster input: shows num changes, replaces dwight with diapers
 	var [text,setText]=useState('')
 	var [changes,setChanges]=useState(0)
 	var onChange=(e)=>{
+		debugger
 		setText(e.target.value)
 		setChanges(changes+1)
+		if (onChanged)
+			onChanged(e.target.value)
 	}
 	var onSubmit=(e)=>{
 		e.preventDefault();
@@ -19,40 +22,33 @@ function Input ({onEnter}){//trickster input: shows num changes, replaces dwight
 				</form>
 }
 var last_lister_state;
-export class  Lister extends React.Component {
-	constructor(){
-		super()
-		this.state = {
-			list: [
-					],
-			text:'yo'
-    	};
-	}
-	
-	onEnter=tx=>{
+export function Lister(){
+	var [list,setList]=useState([])
+	var [filter,setFilter]=useState('')
+	function onEnter(tx){
 		var x={tx,id:Date.now()}
-		var list=this.state.list
-		list.push(x)
-		this.setState({list,text:''})
-		localStorage.setItem('lister', JSON.stringify(this.state.list));
+		setList(list.concat([x]))
+		localStorage.setItem('lister', JSON.stringify(list));
 	}
-
-	
-	render(){
-		return <div>
-		<Input onEnter={this.onEnter} text={this.state.text}/><ol>{
-			this.state.list.map(x=><li key={x.id}> {x.tx}</li>)
-		}</ol></div>
+	function onChanged(tx){
+		setFilter(tx)
 	}
-  componentDidMount() { //mu ha ha, saving state without using react!!
-  	var list =JSON.parse(localStorage.getItem('lister')||'[]')
-  	this.setState({list})
-
-  }
-
-  componentWillUnmount() {
-  	last_lister_state=this.state
-
-  }	
+	useEffect(_=>{ //mu ha ha, saving state without using react!!
+		var list=JSON.parse(localStorage.getItem('lister'))
+		if (list)
+				setList(list)
+		return _=>last_lister_state=list
+	},[])
+	function filterit(x){
+		if (!filter)
+			return true
+		return x.tx.includes(filter)
+	}
+	return <div>
+		new Item<Input onEnter={onEnter}/> 
+		search <Input onChanged={onChanged}/>
+		<ol>{
+			list.filter(filterit).map(x=><li key={x.id}> {x.tx}</li>)
+		}</ol></div>	
 }
 
