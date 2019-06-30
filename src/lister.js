@@ -1,6 +1,6 @@
-import React, { Component,useState, useEffect }  from 'react';
+import React, { useState, useEffect }  from 'react';
 
-export let Mylabel=(props)=>(<div>{props.text}</div>)
+export let Mylabel=(props)=>(<div>{props.text}</div>) //very early example, not used, but let it be so we can reminder how far we went
 function Input ({onEnter,onChanged}){//trickster input: shows num changes, replaces dwight with diapers
 	var [text,setText]=useState('')
 	var [changes,setChanges]=useState(0)
@@ -17,10 +17,9 @@ function Input ({onEnter,onChanged}){//trickster input: shows num changes, repla
 		setText('')
 	}	
 	return <form onSubmit={onSubmit} >{changes}
-						<input type="text" value={text.replace('dwight','diapers')} onChange={onChange}/>
-				</form>
+			    <input type="text" value={text.replace('dwight','diapers')} onChange={onChange}/>
+		   </form>
 }
-var last_lister_state;
 export function Lister(){
 	var [list,setList]=useState([])
 	var [filter,setFilter]=useState('')
@@ -37,7 +36,6 @@ export function Lister(){
 		var list=JSON.parse(localStorage.getItem('lister'))
 		if (list)
 				setList(list)
-		return _=>last_lister_state=list
 	},[])
 	function has_filter(){
 		return (filter && filter!='')
@@ -54,7 +52,6 @@ export function Lister(){
 			tx=tx.replace(RegExp(filter, "ig"),`<b>$&</b>`)
 		//return <li key={x.id}> {tx}</li>
 		return <li key={x.id} dangerouslySetInnerHTML={{__html:tx}}/>
-
 	}
 	return <div>
 		new Item<Input onEnter={onEnter}/> 
@@ -63,4 +60,3 @@ export function Lister(){
 			filtered.map(renderit)
 		}</ol></div>	
 }
-

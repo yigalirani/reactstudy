@@ -1,5 +1,5 @@
-import React,{useState,useEffect}  from 'react';
-import ReactDOM from 'react-dom';
+import React,{useState}  from 'react';
+
 
 const a=size=>Array(size).fill(null)
 const Square = props=> 
