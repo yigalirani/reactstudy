@@ -52,7 +52,9 @@ export function Lister(){
 		var tx=x.tx
 		if (has_filter())
 			tx=tx.replace(RegExp(filter, "ig"),`<b>$&</b>`)
-		return <li key={x.id}> {tx}</li>
+		//return <li key={x.id}> {tx}</li>
+		return <li key={x.id} dangerouslySetInnerHTML={{__html:tx}}/>
+
 	}
 	return <div>
 		new Item<Input onEnter={onEnter}/> 

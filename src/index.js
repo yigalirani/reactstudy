@@ -83,8 +83,9 @@ function MyRouter({ routes,home }) {
     var [hash,setHash]=useState(get_hash());
     var path=hash.split('/')
     function subsribe_to_hash(){
-      window.addEventListener("hashchange",_=>setHash(get_hash()))
-      return _=>window.removeEventListener("hashchange")
+      function the_listener(){setHash(get_hash())}
+      window.addEventListener("hashchange",the_listener)
+      return _=>window.removeEventListener("hashchange",the_listener)
     }
     useEffect(subsribe_to_hash,[])
     function Choose() {
