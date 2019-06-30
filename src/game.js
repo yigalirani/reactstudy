@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect}  from 'react';
 import ReactDOM from 'react-dom';
 
 const a=size=>Array(size).fill(null)
@@ -11,45 +11,41 @@ const Square = props=>
   </button>
 
 
-class Board extends React.Component {
-  renderSquare(i) {
+function Board() {
+  function renderSquare(i) {
     return <Square 
-      value={this.state.squares[i]}
+      value={squares[i]}
       key={i}
-      onClick={() => this.handleClick(i)}
+      onClick={() => handleClick(i)}
     />;
   }
-  constructor(props) {
-    super(props);
-    this.state = {
-      squares: a(9),
-      next:'X'
-    };
-  }
-  handleClick(i) {
-    const squares = this.state.squares.slice(); //is slice just copies the data? look it up
-    squares[i] = this.state.next;
-    this.setState({squares: squares,next:this.state.next==='X'?'O':'X'});
+  const [squares,setSquares]=useState(a(9))
+  const [next,setNext]=useState('X')
+  function handleClick(i) {
+    squares[i] = next;
+    setSquares(squares)
+    setNext(next==='X'?'O':'X')
   }  
-  renderRow(start){
-    return <div className="board-row">{a(3).map((x,pos)=>this.renderSquare(pos+start))}</div> 
+  function renderRow(start){
+    return <div className="board-row">{a(3).map((x,pos)=>renderSquare(pos+start))}</div> 
   }
-  render() {
-    return <div>{this.render2()}{this.render2()}</div>
+  function render() {
+    return <div>{render2()}{render2()}</div>
   } 
-  render2() {
-    const status = 'Next player: '+this.state.next;
-    const winner=calculateWinner(this.state.squares)
+  function render2() {
+    const status = 'Next player: '+next;
+    const winner=calculateWinner(squares)
     return (
       <div>
         <div className="status">{status}</div>
         <div className="status">winnder:{winner}</div>
-        {this.renderRow(0)}
-        {this.renderRow(3)}
-        {this.renderRow(6)}
+        {renderRow(0)}
+        {renderRow(3)}
+        {renderRow(6)}
       </div>
     );
   }
+  return render()
 }
 
 export class Game extends React.Component {
