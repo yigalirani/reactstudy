@@ -5,7 +5,6 @@ function Input ({onEnter,onChanged}){//trickster input: shows num changes, repla
 	var [text,setText]=useState('')
 	var [changes,setChanges]=useState(0)
 	var onChange=(e)=>{
-		debugger
 		setText(e.target.value)
 		setChanges(changes+1)
 		if (onChanged)
@@ -27,11 +26,12 @@ export function Lister(){
 	var [filter,setFilter]=useState('')
 	function onEnter(tx){
 		var x={tx,id:Date.now()}
-		setList(list.concat([x]))
-		localStorage.setItem('lister', JSON.stringify(list));
+		var new_list=list.concat([x])
+		setList(new_list)
+		localStorage.setItem('lister', JSON.stringify(new_list));
 	}
 	function onChanged(tx){
-		setFilter(tx)
+		setFilter(tx.trim())
 	}
 	useEffect(_=>{ //mu ha ha, saving state without using react!!
 		var list=JSON.parse(localStorage.getItem('lister'))
@@ -39,16 +39,26 @@ export function Lister(){
 				setList(list)
 		return _=>last_lister_state=list
 	},[])
+	function has_filter(){
+		return (filter && filter!='')
+	}
 	function filterit(x){
-		if (!filter)
+		if (!has_filter())
 			return true
 		return x.tx.includes(filter)
+	}
+	var filtered=list.filter(filterit)
+	function renderit(x){
+		var tx=x.tx
+		if (has_filter())
+			tx=tx.replace(RegExp(filter, "ig"),`<b>$&</b>`)
+		return <li key={x.id}> {tx}</li>
 	}
 	return <div>
 		new Item<Input onEnter={onEnter}/> 
 		search <Input onChanged={onChanged}/>
 		<ol>{
-			list.filter(filterit).map(x=><li key={x.id}> {x.tx}</li>)
+			filtered.map(renderit)
 		}</ol></div>	
 }
 
