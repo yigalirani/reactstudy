@@ -1,28 +1,22 @@
-import React, { Component }  from 'react';
+import React, { Component,useState, useEffect }  from 'react';
 
 export let Mylabel=(props)=>(<div>{props.text}</div>)
-class Input extends React.Component{
-	constructor(props){
-		super(props)
-		this.state=({'text':'',num_changes:0})
+function Input ({onEnter}){//trickster input: shows num changes, replaces dwight with diapers
+	var [text,setText]=useState('')
+	var [changes,setChanges]=useState(0)
+	var onChange=(e)=>{
+		setText(e.target.value)
+		setChanges(changes+1)
 	}
-	onChange=(e)=>{
-		this.setState({ text: e.target.value,num_changes:this.state.num_changes+1 });
-	}
-	onSubmit=(e)=>{
+	var onSubmit=(e)=>{
 		e.preventDefault();
-		if (this.props.onSubmit)
-			this.props.onSubmit(e.target[0].value)
-		this.setState({'text':''})
+		if (onEnter)
+			onEnter(e.target[0].value)
+		setText('')
 	}	
-
-	render(){
-	
-
-		return <form onSubmit={this.onSubmit} >{this.state.num_changes}
-						<input type="text" value={this.state.text.replace('xx',' ')} onChange={this.onChange}/>
+	return <form onSubmit={onSubmit} >{changes}
+						<input type="text" value={text.replace('dwight','diapers')} onChange={onChange}/>
 				</form>
-	}
 }
 var last_lister_state;
 export class  Lister extends React.Component {
@@ -35,8 +29,7 @@ export class  Lister extends React.Component {
     	};
 	}
 	
-	onSubmit=tx=>{
-		debugger
+	onEnter=tx=>{
 		var x={tx,id:Date.now()}
 		var list=this.state.list
 		list.push(x)
@@ -47,7 +40,7 @@ export class  Lister extends React.Component {
 	
 	render(){
 		return <div>
-		<Input onSubmit={this.onSubmit} text={this.state.text}/><ol>{
+		<Input onEnter={this.onEnter} text={this.state.text}/><ol>{
 			this.state.list.map(x=><li key={x.id}> {x.tx}</li>)
 		}</ol></div>
 	}
