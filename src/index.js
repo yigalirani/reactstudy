@@ -4,6 +4,12 @@ import './index.css';
 import { Lister } from './lister.js'
 import { Game } from './game.js'
 
+function Outer({text='d',count=10}){
+  function Inner({i}){
+    return <div>{text+i}</div>
+  }
+  return <div>{[...Array(count).keys()].map(i=><Inner key={i}{...{i}}/>)}</div>
+}
 function Tiker() {
     var [count,setCount]=useState(0);
 
@@ -35,7 +41,7 @@ function Index() {
 
 
 function eq(a,b) {
-    return a.toLowerCase()==b.toLowerCase()
+    return a.toLowerCase()===b.toLowerCase()
 }
 
 function MyRouter({ routes,home }) {
@@ -68,5 +74,5 @@ function MyRouter({ routes,home }) {
     return <div><Menu/><Choose/></div>
 }
 //{Index,Game,Lister }
-ReactDOM.render(<MyRouter home={Index} routes={{ Index,Game,Lister }} />,document.getElementById('root'));
+ReactDOM.render(<MyRouter home={Index} routes={{ Index,Game,Lister,Outer }} />,document.getElementById('root'));
 //<AppRouter r={['Index','Game','Lister' ]}/>

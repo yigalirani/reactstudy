@@ -38,7 +38,7 @@ export function Lister(){
 				setList(list)
 	},[])
 	function has_filter(){
-		return (filter && filter!='')
+		return (filter && filter!=='')
 	}
 	function filterit(x){
 		if (!has_filter())
