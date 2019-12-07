@@ -3,13 +3,26 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Lister } from './lister.js'
 import { Game } from './game.js'
+import styled from 'styled-components'
 
+const Button=styled.a`
+  background-color:red;
+  color:white;
+`
+const Border=styled.div`
+  border:3px dashed green;
+`
+
+function Styled(){
+  return <Border><Button style={ {padding:15,margin:20,display:'inline-block'} }href="/">root</Button></Border>
+}
 function Outer({text='d',count=10}){
   function Inner({i}){
     return <div>{text+i}</div>
   }
   return <div>{[...Array(count).keys()].map(i=><Inner key={i}{...{i}}/>)}</div>
 }
+
 function Tiker() {
     var [count,setCount]=useState(0);
 
@@ -74,5 +87,5 @@ function MyRouter({ routes,home }) {
     return <div><Menu/><Choose/></div>
 }
 //{Index,Game,Lister }
-ReactDOM.render(<MyRouter home={Index} routes={{ Index,Game,Lister,Outer }} />,document.getElementById('root'));
+ReactDOM.render(<MyRouter home={Index} routes={{ Index,Game,Lister,Outer,Styled }} />,document.getElementById('root'));
 //<AppRouter r={['Index','Game','Lister' ]}/>
