@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Lister } from './lister.js'
 import { Game } from './game.js'
+import { Svgdemo } from './svg.js'
 import styled from 'styled-components'
 
 const Button=styled.a`
@@ -27,7 +28,7 @@ function Tiker() {
     var [count,setCount]=useState(0);
 
     useEffect(()=>{
-        var timerID=setInterval(_=>setCount(count=>count+1) //setCount(count+1) wont work
+        var timerID=setInterval(_=>setCount(count=>count+1) //setCount(count+1) wont work.after frw months: great comment!
             ,1000);
         console.log('setinterval',count)
         return function cleanup() {
@@ -87,5 +88,5 @@ function MyRouter({ routes,home }) {
     return <div><Menu/><Choose/></div>
 }
 //{Index,Game,Lister }
-ReactDOM.render(<MyRouter home={Index} routes={{ Index,Game,Lister,Outer,Styled }} />,document.getElementById('root'));
+ReactDOM.render(<MyRouter home={Index} routes={{ Index,Game,Lister,Outer,Styled,Svgdemo }} />,document.getElementById('root'));
 //<AppRouter r={['Index','Game','Lister' ]}/>
