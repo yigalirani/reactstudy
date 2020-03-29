@@ -1,6 +1,3 @@
-import React,{useState}  from 'react';
-
-
 const a=size=>Array(size).fill(null)
 const Square = props=> 
   <button 
@@ -19,8 +16,8 @@ function Board() {
       onClick={() => handleClick(i)}
     />;
   }
-  const [squares,setSquares]=useState(a(9))
-  const [next,setNext]=useState('X')
+  const [squares,setSquares]=React.useState(a(9))
+  const [next,setNext]=React.useState('X')
   function handleClick(i) {
     squares[i] = next;
     setSquares(squares)
@@ -48,7 +45,7 @@ function Board() {
   return render()
 }
 
-export class Game extends React.Component {
+class Game extends React.Component {
   render() {
     return (
       <div className="game">

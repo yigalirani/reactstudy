@@ -1,9 +1,7 @@
-import React, { useState, useEffect }  from 'react';
-
-export let Mylabel=(props)=>(<div>{props.text}</div>) //very early example, not used, but let it be so we can reminder how far we went
+let Mylabel=(props)=>(<div>{props.text}</div>) //very early example, not used, but let it be so we can reminder how far we went
 function Input ({onEnter,onChanged}){//trickster input: shows num changes, replaces dwight with diapers
-	var [text,setText]=useState('')
-	var [changes,setChanges]=useState(0)
+	var [text,setText]=React.useState('')
+	var [changes,setChanges]=React.useState(0)
 	var onChange=(e)=>{
 		setText(e.target.value)
 		setChanges(changes+1)
@@ -20,9 +18,9 @@ function Input ({onEnter,onChanged}){//trickster input: shows num changes, repla
 			    <input type="text" value={text.replace('dwight','diapers')} onChange={onChange}/>
 		   </form>
 }
-export function Lister(){
-	var [list,setList]=useState([])
-	var [filter,setFilter]=useState('')
+function Lister(){
+	var [list,setList]=React.useState([])
+	var [filter,setFilter]=React.useState('')
 	function onEnter(tx){
 		var x={tx,id:Date.now()}
 		var new_list=list.concat([x])
@@ -32,7 +30,7 @@ export function Lister(){
 	function onChanged(tx){
 		setFilter(tx.trim())
 	}
-	useEffect(_=>{ //mu ha ha, saving state without using react!!
+	React.useEffect(_=>{ //mu ha ha, saving state without using react!!
 		var list=JSON.parse(localStorage.getItem('lister'))
 		if (list)
 				setList(list)
