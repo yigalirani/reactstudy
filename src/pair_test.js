@@ -35,9 +35,14 @@ function InputP({value}){
 	}
 	return <input type="text" {...{value:value.val,onChange}} />
 }
-function InputColorP(){
-	var value=usePair('red')
-	return <div style={{'background':value.val,padding:100}} > Hello
+function InputColorP({color=''}){
+	var value=usePair(color)
+	return <div style={{'background':value.val,padding:100,display:'inline'}} >
 		<InputP {...{value}}/>
 	</div>
 } 
+function ColorGrid(){
+	//return <div><InputColorP color='red'/><InputColorP/></div>
+	return <div style={{display:'flex',flexWrap: 'wrap'}}>{Array.from({length: 9}, (v, i) => <InputColorP color='red'/> )}</div>
+	return <div><InputColorP color='red'/><InputColorP/></div>
+}
