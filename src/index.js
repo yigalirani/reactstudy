@@ -28,11 +28,16 @@ function Index() {
   </MyDiv>
 }
 
-
 function eq(a,b) {
     return a.toLowerCase()===b.toLowerCase()
 }
-
+function make_csv(){
+  var ans='value1,value2\n'
+  return ans+[...Array(50000).keys()].map(x=>'long text for testing the download function the goal is to see that it is possible to download a lot'+x+','+(x+2)).join('\n')
+}
+function  Download(){
+  return <a href={"data:text/csv;charset=utf-8,"+encodeURIComponent(make_csv())} download='data.csv'> download it </a>
+}
 function MyRouter({ routes,home }) {
     const get_hash=_=>window.location.hash.substr(1)
     var [hash,setHash]=React.useState(get_hash());
@@ -63,5 +68,5 @@ function MyRouter({ routes,home }) {
     return <div><Menu/><Choose/></div>
 }
 //{Index,Game,Lister }
-ReactDOM.render(<MyRouter home={Index} routes={{ Index,Game,Lister,Svgdemo }} />,document.getElementById('root'));
+ReactDOM.render(<MyRouter home={Index} routes={{ Index,Game,Lister,Svgdemo,Download,InputColor,InputColorP}} />,document.getElementById('root'));
 //<AppRouter r={['Index','Game','Lister' ]}/>
