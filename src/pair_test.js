@@ -23,7 +23,7 @@ function Input({value,set_value}){
 	return <input type="text" {...{value,onChange}} />
 }
 function InputColor(){
-	var[value,set_value]=React.useState('red')
+	var[value,set_value]=React.useState('')
 	return <div style={{'background':value}} > Hello
 		<Input {...{value,set_value}}/>
 	</div>
@@ -44,5 +44,5 @@ function InputColorP({color=''}){
 function ColorGrid(){
 	//return <div><InputColorP color='red'/><InputColorP/></div>
 	return <div style={{display:'flex',flexWrap: 'wrap'}}>{Array.from({length: 9}, (v, i) => <InputColorP color='red'/> )}</div>
-	return <div><InputColorP color='red'/><InputColorP/></div>
+	return <div><InputColorP color=''/><InputColorP/></div>
 }
