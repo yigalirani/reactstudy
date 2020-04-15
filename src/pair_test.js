@@ -43,6 +43,6 @@ function InputColorP({color=''}){
 } 
 function ColorGrid(){
 	//return <div><InputColorP color='red'/><InputColorP/></div>
-	return <div style={{display:'flex',flexWrap: 'wrap'}}>{Array.from({length: 9}, (v, i) => <InputColorP color='red'/> )}</div>
+	return <div style={{display:'flex',flexWrap: 'wrap'}}>{Array.from({length: 16}, (v, i) => <InputColorP color='red'/> )}</div>
 	return <div><InputColorP color=''/><InputColorP/></div>
 }
