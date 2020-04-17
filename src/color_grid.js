@@ -13,6 +13,7 @@ function InputColor({color=''}){
 function range(size){
 	return Array.from({length: size}, (v, i)=>i)
 }
+const ThemeContext = React.createContext(themes.light);
 function ColorRow({size}){
 	return <div style={{display:'flex'}}>
 	{range(size).map(x=><InputColor/>)}
