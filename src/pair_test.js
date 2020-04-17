@@ -35,10 +35,21 @@ function InputP({value}){
 	}
 	return <input type="text" {...{value:value.val,onChange}} />
 }
-function InputColorP({color=''}){
+function InputEnter({value,className}){
+	var innervalue=usePair(value.val)
+	function onKeyPress(e){
+		if (e.key === 'Enter')
+			value.set(innervalue.val)
+	}
+	function onChange(e){
+		innervalue.set(e.target.value)
+	}
+	return <input type="text" {...{value:innervalue.val,onChange,onKeyPress,className}} />
+}
+function InputColorP({color='red'}){
 	var value=usePair(color)
 	return <div style={{'background':value.val,padding:100,display:'inline'}} >
-		<InputP {...{value}}/>
+		<InputEnter {...{value,className:'bigger'}}/>
 	</div>
 } 
 function ColorGrid(){
