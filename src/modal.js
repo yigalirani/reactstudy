@@ -8,7 +8,6 @@ function ModalWindow({show,show_set,children}){
 	return <div {...{className}}>
 		<div className="modal-content">
 			<span {...{onClick}} className="close">&times;</span>
-			<p>Some text in the Modal..</p>
 			{children}
 		</div>
 	</div>
@@ -19,7 +18,9 @@ function ModalButton(){
 	function onClick(){
 		show_set(true)
 	}
-	return <><ModalWindow {...{show,show_set}}>hellow</ModalWindow><button {...{onClick}}>click</button></>
+	return <><ModalWindow {...{show,show_set}}><h1>modal window</h1>
+		<button onClick={_=>show_set(false)}>Close</button>
+	</ModalWindow><button {...{onClick}}>click</button></>
 }
 function ModalPage(){
 	return <ModalButton/>
