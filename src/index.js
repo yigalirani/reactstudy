@@ -38,6 +38,7 @@ function make_csv(){
 function  Download(){
   return <a href={"data:text/csv;charset=utf-8,"+encodeURIComponent(make_csv())} download='data.csv'> download it </a>
 }
+
 function MyRouter({ routes,home }) {
     const get_hash=_=>window.location.hash.substr(1)
     var [hash,setHash]=React.useState(get_hash());
@@ -68,5 +69,5 @@ function MyRouter({ routes,home }) {
     return <div><Menu/><Choose/></div>
 }
 //{Index,Game,Lister }
-ReactDOM.render(<MyRouter home={Index} routes={{ Index,ContextDemo,ContextDemoProp,Game,Lister,Svgdemo,Download,InputColor,InputColorP,ColorGrid}} />,document.getElementById('root'));
+ReactDOM.render(<MyRouter home={Index} routes={{ Index,ModalPage,ContextDemo,ContextDemoProp,Game,Lister,Svgdemo,Download,InputColor,InputColorP,ColorGrid}} />,document.getElementById('root'));
 //<AppRouter r={['Index','Game','Lister' ]}/>
