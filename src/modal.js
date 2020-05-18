@@ -1,4 +1,4 @@
-function ModalWindow({show,show_set}){
+function ModalWindow({show,show_set,children}){
 	var className='modal'
 	if (show)
 		className+=' show'
@@ -9,6 +9,7 @@ function ModalWindow({show,show_set}){
 		<div className="modal-content">
 			<span {...{onClick}} className="close">&times;</span>
 			<p>Some text in the Modal..</p>
+			{children}
 		</div>
 	</div>
 }
@@ -18,7 +19,7 @@ function ModalButton(){
 	function onClick(){
 		show_set(true)
 	}
-	return <><ModalWindow {...{show,show_set}}/><button {...{onClick}}>click</button></>
+	return <><ModalWindow {...{show,show_set}}>hellow</ModalWindow><button {...{onClick}}>click</button></>
 }
 function ModalPage(){
 	return <ModalButton/>
