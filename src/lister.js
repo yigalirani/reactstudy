@@ -1,5 +1,5 @@
 let Mylabel=(props)=>(<div>{props.text}</div>) //very early example, not used, but let it be so we can reminder how far we went
-function Input ({onEnter,onChanged}){//trickster input: shows num changes, replaces dwight with diapers
+function ListerInput ({onEnter,onChanged}){//trickster input: shows num changes, replaces dwight with diapers
 	var [text,setText]=React.useState('')
 	var [changes,setChanges]=React.useState(0)
 	var onChange=(e)=>{
@@ -52,8 +52,8 @@ function Lister(){
 		return <li key={x.id} dangerouslySetInnerHTML={{__html:tx}}/>
 	}
 	return <div>
-		new Item<Input onEnter={onEnter}/> 
-		search <Input onChanged={onChanged}/>
+		new Item<ListerInput onEnter={onEnter}/> 
+		search <ListerInput onChanged={onChanged}/>
 		<ol>{
 			filtered.map(renderit)
 		}</ol></div>	
