@@ -22,6 +22,8 @@ function ModalButton(){
 		<button onClick={_=>show_set(false)}>Close</button>
 	</ModalWindow><button {...{onClick}}>click</button></>
 }
-function ModalPage(){
+function ModalPage({do_render}) {
+    if (!do_render)
+	  return null;
 	return <ModalButton/>
 }

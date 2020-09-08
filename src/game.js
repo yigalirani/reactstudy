@@ -45,8 +45,9 @@ function Board() {
   return render()
 }
 
-class Game extends React.Component {
-  render() {
+function Game({do_render}) {
+    if (!do_render)
+      return null;
     return (
       <div className="game">
         <div className="game-board">
@@ -58,8 +59,8 @@ class Game extends React.Component {
         </div>
       </div>
     );
-  }
 }
+
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],

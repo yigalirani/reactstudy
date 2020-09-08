@@ -18,7 +18,9 @@ function ListerInput ({onEnter,onChanged}){//trickster input: shows num changes,
 			    <input type="text" value={text.replace('dwight','diapers')} onChange={onChange}/>
 		   </form>
 }
-function Lister(){
+function Lister({do_render}) {
+    if (!do_render)
+      return null;
 	var [list,setList]=React.useState([])
 	var [filter,setFilter]=React.useState('')
 	function onEnter(tx){

@@ -7,7 +7,9 @@ function Child({lookup}){
     return <div>{count}</div>
 }
 
-function Parent(){
+function Parent({do_render}) {
+    if (!do_render)
+      return null;
     var [lookup,set_lookup]=React.useState({})
     return <div>
         <Child {...{lookup}}/>

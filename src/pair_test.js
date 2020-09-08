@@ -22,8 +22,10 @@ function Input({value,set_value}){
 	}
 	return <input type="text" {...{value,onChange}} />
 }
-function InputColor(){
+function InputColor({do_render}) {
 	var[value,set_value]=React.useState('')
+    //if (!do_render)
+	 // return 'r'
 	return <div style={{'background':value}} > Hello
 		<Input {...{value,set_value}}/>
 	</div>
@@ -46,13 +48,17 @@ function InputEnter({value,className}){
 	}
 	return <input type="text" {...{value:innervalue.val,onChange,onKeyPress,className}} />
 }
-function InputColorP({color='red'}){
+function InputColorP({color='red',do_render}) {
+    if (!do_render)
+      return null;
 	var value=usePair(color)
 	return <div style={{'background':value.val,padding:100,display:'inline'}} >
 		<InputEnter {...{value,className:'bigger'}}/>
 	</div>
 } 
-function ColorGrid(){
+function ColorGrid({do_render}) {
+    if (!do_render)
+      return null;
 	//return <div><InputColorP color='red'/><InputColorP/></div>
 	return <div style={{display:'flex',flexWrap: 'wrap'}}>{Array.from({length: 16}, (v, i) => <InputColorP color='red'/> )}</div>
 	return <div><InputColorP color=''/><InputColorP/></div>

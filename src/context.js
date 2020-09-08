@@ -8,7 +8,9 @@ function Setter(){
 	return <>setter<InputEnter {...{value:context.color}}/></>
 }
 
-function ContextDemo(){
+function ContextDemo({do_render}) {
+    if (!do_render)
+	  return null;
 	var  color=usePair('red')
 	return <TheContext.Provider value={{color}}>
 		 <Setter/>
@@ -25,7 +27,9 @@ function Setter2({context}){
 	return <>ContextDemoProp<InputEnter {...{value:context.color}}/></>
 }
 
-function ContextDemoProp(){
+function ContextDemoProp({do_render}) {
+    if (!do_render)
+	  return null;
 	var  color=usePair('blue')
 	var context={color}
 	return <>

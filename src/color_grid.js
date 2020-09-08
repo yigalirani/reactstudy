@@ -20,9 +20,11 @@ function ColorRow({size}){
 	</div>
 }
 
-function ColorGrid({size=4}){
+function ColorGrid({size=4,do_render}) {
+    if (!do_render)
+      return null;
 	return <div style={{display:'flex'}}>{
-		range(size).map(x=><ColorRow {..{size}}/>)
+		range(size).map(x=><ColorRow {...{size}}/>)
 	}</div>
 }
 ReactDOM.render(<ColorGrid/>)

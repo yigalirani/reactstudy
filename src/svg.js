@@ -1,4 +1,6 @@
-function Svgdemo(){
+function Svgdemo({do_render}) {
+    if (!do_render)
+      return null;
 	var [x,setx]=React.useState(0)
 	function setint(){
 		console.log(x)
