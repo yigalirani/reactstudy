@@ -70,7 +70,7 @@ function MyRouter({ routes,home }) {
       function onClick(){
         set_hash(x)
       }  
-      return <span key={x} {...{className:calc_cls(),onClick}} href={'#'+x}>{x}</span>   
+      return <span  {...{key:x,className:calc_cls(),onClick}} href={'#'+x}>{x}</span>   
     }
     function Menu(){
       return <div className='menu'>{Object.keys(routes).map(x=><Clicker {...{key:x,x,set_hash}}/>)}</div>

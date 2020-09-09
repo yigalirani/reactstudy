@@ -22,6 +22,15 @@ ol, ul {
   background: purple;
   color: white;
 }
+.menu span{
+  margin:5px;
+}
+.menu span:hover{
+  color: navy;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .board-row:after {
   clear: both;
   content: "";

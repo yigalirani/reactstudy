@@ -26,6 +26,11 @@ function InputColor({do_render}) {
 	var[value,set_value]=React.useState('')
     //if (!do_render)
 	 // return 'r'
+	React.useEffect(x=>{
+		console.log('mount')
+		return _=>		console.log('umount')
+
+	})
 	return <div style={{'background':value}} > Hello
 		<Input {...{value,set_value}}/>
 	</div>
