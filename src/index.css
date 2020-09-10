@@ -121,3 +121,15 @@ ol, ul {
   text-decoration: none;
   cursor: pointer;
 }
+.tab{
+  display:inline-block;
+  padding:10px;
+}
+.tab:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.tab.selected{
+  background:red;
+  color:white;
+}
