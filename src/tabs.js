@@ -3,7 +3,8 @@ function Panel({children,title}){
     React.useEffect(_=>{
         console.log(title,'mount')
         return _x=>console.log(title,'unmount')
-    })
+    },[])
+    console.log(title,'rener')
     function onClick(){
         set_count(count+10)
     }
@@ -19,7 +20,7 @@ function Tabs({children}){
         return <div {...{className,onClick,key:x.key}}>{x.props.title||x.key}</div>
     })
     var panels= children.map(x=>
-        <div key={x.key} hidden={x.key==selected}>{x}</div>
+        <div key={x.key} hidden={x.key!=selected}>{x}</div>
     )
 
     var panel=children.find(x=>x.key==selected)
@@ -29,5 +30,6 @@ function TabsPage(){
     return <Tabs>
         <Panel key='the_tab1' title='The tab1 title'> tab1<b>rrr</b></Panel>
         <Panel key='the_tab2' title='The tab2 title'> tab2</Panel>
+        <Panel key='the_tab3' title='The tab3 title'> tab33333</Panel>        
         </Tabs>
 }
