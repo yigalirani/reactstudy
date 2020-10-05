@@ -18,8 +18,12 @@ function Tabs({children}){
         var className=(selected==x.key)?'tab selected':'tab'
         return <div {...{className,onClick,key:x.key}}>{x.props.title||x.key}</div>
     })
+    var panels= children.map(x=>
+        <div key={x.key} hidden={x.key==selected}>{x}</div>
+    )
+
     var panel=children.find(x=>x.key==selected)
-    return <><div>{tabs}</div>{panel}</>
+    return <><div>{tabs}</div>{panels}</>
 }
 function TabsPage(){
     return <Tabs>
