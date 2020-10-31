@@ -133,3 +133,18 @@ ol, ul {
   background:red;
   color:white;
 }
+.group{
+  background:#eeffff ;
+  display: inline-block;
+  padding:5pt;
+  margin:3px;
+  /*font-weight:bold;*/
+}
+.group_selected{
+  background:lightGreen ;
+}
+.closebutton{
+  cursor: pointer; 
+  padding:0px;
+  color:purple;
+}
