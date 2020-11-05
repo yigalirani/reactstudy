@@ -69,5 +69,5 @@ function MyRouter({ routes,home }) {
     return <div><Menu/><Choose/></div>
 }
 //{Index,Game,Lister }
-ReactDOM.render(<MyRouter home={Index} routes={{ Index,GroupTest,TabsPage,Parent,Parent2,ModalPage,ModalPage2,ContextDemo,ContextDemoProp,Game,Lister,Svgdemo,Download,InputColor,InputColorP,ColorGrid}} />,document.getElementById('root'));
+ReactDOM.render(<MyRouter home={Index} routes={{Index,Clickers,Sequence,GroupTest,TabsPage,Parent,Parent2,ModalPage,ModalPage2,ContextDemo,ContextDemoProp,Game,Lister,Svgdemo,Download,InputColor,InputColorP,ColorGrid}} />,document.getElementById('root'));
 //<AppRouter r={['Index','Game','Lister' ]}/>
