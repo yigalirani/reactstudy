@@ -8,7 +8,7 @@ function make_re(pattern){
         return null
     }
 }
-function Concat({words}){
+function concat(words){
     function f(x,i){
         if (i%2==0)
             return x
@@ -20,6 +20,10 @@ function split(re,value){
     if (!re)
         return [value]
     return value.split(re)
+}
+function Marker({re,value}){
+    var words=split(re,value)
+    return concat(words)
 }
 function Highlight(){
     var [pattern,set_pattern]=React.useState('')
@@ -35,7 +39,7 @@ function Highlight(){
         <ol>
             {words.map(x=><li>{x}</li>)}
         </ol>
-        <Concat {...{words}}/>
+        <Marker {...{re,value}}/>
         
     </>    
 }
