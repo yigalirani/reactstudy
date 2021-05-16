@@ -1,3 +1,4 @@
+import React from 'react';
 function CloseButton({onClick}){
   return <span className='closebutton'  {...{onClick}}>🗙</span>
 }
@@ -17,7 +18,7 @@ function InputP({value,set_value}){
 	}
 	return <input type="text" {...{value,onChange}} />
 }
-function GroupTest(){
+export function GroupTest(){
   var [value,set_value]=React.useState('')
   function is_default(){
     return value.trim()=='t'

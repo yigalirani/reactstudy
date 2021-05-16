@@ -1,3 +1,4 @@
+import React from 'react';
 function make_re(pattern){
     pattern=pattern.trim()
     if (!pattern)

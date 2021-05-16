@@ -1,3 +1,4 @@
+import React from 'react';
 const TheContext=React.createContext({})
 function Label(){
 	var context=React.useContext(TheContext)

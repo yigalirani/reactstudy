@@ -1,3 +1,4 @@
+import React from 'react';
 function ModalWindow({show,show_set,children}){
 	var className='modal'
 	if (show)

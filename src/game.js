@@ -1,3 +1,4 @@
+import React from 'react';
 const a=size=>Array(size).fill(null)
 const Square = props=> 
   <button 
@@ -45,7 +46,7 @@ function Board() {
   return render()
 }
 
-class Game extends React.Component {
+export class Game extends React.Component {
   render() {
     return (
       <div className="game">

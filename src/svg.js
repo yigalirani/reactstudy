@@ -1,3 +1,4 @@
+import React from 'react';
 function Svgdemo(){
 	var [x,setx]=React.useState(0)
 	function setint(){

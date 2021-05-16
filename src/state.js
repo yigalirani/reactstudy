@@ -1,3 +1,4 @@
+import React from 'react';
 function State(){
   var [msg,set_msg]=React.useState("hello") //not rendered, just to force render
   var [data,set_data]=React.useState({version:1})

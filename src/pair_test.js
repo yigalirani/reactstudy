@@ -1,3 +1,4 @@
+import React from 'react';
 function Pair([val,set_value]){
     function set(x){
       console.log('set:'+val+'->'+x)

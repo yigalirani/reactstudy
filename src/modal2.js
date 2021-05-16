@@ -1,3 +1,4 @@
+import React from 'react';
 function ModalWindow2({show_set,children}){
 	function onClick(){
 		show_set('')

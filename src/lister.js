@@ -1,3 +1,4 @@
+import React from 'react';
 let Mylabel=(props)=>(<div>{props.text}</div>) //very early example, not used, but let it be so we can reminder how far we went
 function ListerInput ({onEnter,onChanged}){//trickster input: shows num changes, replaces dwight with diapers
 	var [text,setText]=React.useState('')

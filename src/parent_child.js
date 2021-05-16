@@ -1,3 +1,4 @@
+import React from 'react';
 function Child({lookup}){
     var [count,set_count]=React.useState(0)
     function diff(){

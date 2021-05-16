@@ -1,3 +1,4 @@
+import React from 'react';
 function onClick(){
   alert('clicked')
 }
@@ -12,6 +13,6 @@ function Clicker2(){
 function Clicker3(){
   return <div className={className} onClick={onClick}>clicker 3</div>
 }
-function Clickers(){
+export function Clickers(){
   return <><Clicker1/><Clicker2/><Clicker3/></>
 }

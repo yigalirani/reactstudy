@@ -1,3 +1,4 @@
+import React from 'react';
 function Inner({outer_state,inner_state,set_inner_state}){
   if (inner_state.length<outer_state.length){ //change < to <= and you got yourself an infiniate loop
     set_inner_state(outer_state)

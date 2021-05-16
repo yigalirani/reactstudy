@@ -1,3 +1,4 @@
+import React from 'react';
 function Panel({children,title}){
     var [count,set_count]=React.useState(0)
     React.useEffect(_=>{
