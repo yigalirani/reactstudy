@@ -1,5 +1,5 @@
 
-function Tiker() {
+function useTiker() {
     var [count,setCount]=React.useState(0);
 
     React.useEffect(()=>{
@@ -24,10 +24,22 @@ var MyDiv=({ children })=><div className='high'> {children} {children}</div>
 
 function Index() {
     return <MyDiv><h2>Home</h2>
-    <Tiker />
+    {useTiker()}
+    <Diff/>
   </MyDiv>
 }
-
+function Label({title}){
+  return <h1>{title}</h1>
+}
+function  useLabel({title}){
+  return <h1> {title}</h1>
+}
+function Diff(){
+  return <div>
+    <Label title='this is component'/>
+    {useLabel({title:'this is custum hook'})}
+    </div>
+}
 function eq(a,b) {
     return a.toLowerCase()===b.toLowerCase()
 }
