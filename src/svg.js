@@ -1,14 +1,14 @@
 import React from 'react';
-function Svgdemo(){
+export function Svgdemo(){
 	var [x,setx]=React.useState(0)
 	function setint(){
 		console.log(x)
-		var interval=setInterval(_=>{
+		var interval=setInterval(()=>{
 			setx(x=>(x+1)%140)
 		},10)
-		return _=> clearInterval(interval)
+		return ()=> clearInterval(interval)
 	}
-	React.useEffect(_=>setint(),[])
+	React.useEffect(()=>setint(),[])
 	return <svg version="1.1"
      baseProfile="full"
      width="1000" height="1000"
@@ -25,5 +25,5 @@ function Svgdemo(){
 <path d="M20,230 Q40,205 50,230 T90,230" fill="none" stroke="blue" strokeWidth="5"/>
 <path d="M 10 10 h 90 V 90 H 1000 L 10 120 Z" stroke="pink" strokeWidth="5" fill='transparent'/>
 </svg>
-	return <div>hello</div>
+
 }

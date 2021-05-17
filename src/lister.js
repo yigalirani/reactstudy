@@ -1,5 +1,4 @@
 import React from 'react';
-let Mylabel=(props)=>(<div>{props.text}</div>) //very early example, not used, but let it be so we can reminder how far we went
 function ListerInput ({onEnter,onChanged}){//trickster input: shows num changes, replaces dwight with diapers
 	var [text,setText]=React.useState('')
 	var [changes,setChanges]=React.useState(0)
@@ -16,10 +15,10 @@ function ListerInput ({onEnter,onChanged}){//trickster input: shows num changes,
 		setText('')
 	}	
 	return <form onSubmit={onSubmit} >{changes}
-			    <input type="text" value={text.replace('dwight','diapers')} onChange={onChange}/>
-		   </form>
+		<input type="text" value={text.replace('dwight','diapers')} onChange={onChange}/>
+	</form>
 }
-function Lister(){
+export function Lister(){
 	var [list,setList]=React.useState([])
 	var [filter,setFilter]=React.useState('')
 	function onEnter(tx){
@@ -31,7 +30,7 @@ function Lister(){
 	function onChanged(tx){
 		setFilter(tx.trim())
 	}
-	React.useEffect(_=>{ //mu ha ha, saving state without using react!!
+	React.useEffect(()=>{ //mu ha ha, saving state without using react!!
 		var list=JSON.parse(localStorage.getItem('lister'))
 		if (list)
 				setList(list)

@@ -20,9 +20,9 @@ function ModalButton(){
 		show_set(true)
 	}
 	return <><ModalWindow {...{show,show_set}}><h1>modal window</h1>
-		<button onClick={_=>show_set(false)}>Close</button>
+		<button onClick={()=>show_set(false)}>Close</button>
 	</ModalWindow><button {...{onClick}}>click</button></>
 }
-function ModalPage(){
+export function ModalPage(){
 	return <ModalButton/>
 }

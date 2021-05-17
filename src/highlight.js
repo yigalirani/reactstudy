@@ -1,4 +1,5 @@
 import React from 'react';
+import {Input} from './pair_test.js'
 function make_re(pattern){
     pattern=pattern.trim()
     if (!pattern)
@@ -26,7 +27,7 @@ function Marker({re,value}){
     var words=split(re,value)
     return concat(words)
 }
-function Highlight(){
+export function Highlight(){
     var [pattern,set_pattern]=React.useState('')
     var [value,set_value]=React.useState('The quick brown fox jumps over the lazy dog')
     var re=make_re(pattern)
@@ -38,7 +39,7 @@ function Highlight(){
         <Input {...{value,set_value}}/>
         {words.length}
         <ol>
-            {words.map(x=><li>{x}</li>)}
+            {words.map((x,i)=><li key={i}>{x}</li>)}
         </ol>
         <Marker {...{re,value}}/>
         

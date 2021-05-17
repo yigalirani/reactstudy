@@ -12,7 +12,7 @@ function Group({children,is_default,set_is_default}){
   }
   return <div {...{className}}>{closenutton}{children}</div>
 }
-function InputP({value,set_value}){
+export function InputP({value,set_value}){
 	function onChange(e){
 		set_value(e.target.value)
 	}

@@ -1,5 +1,5 @@
 import React from 'react';
-function use_counters(){
+function useCounters(){
   var [count,set_count]=React.useState([])
   var [count2,set_count2]=React.useState([])
   function inc(){
@@ -14,8 +14,8 @@ function use_counters(){
   }  
   return {count,count2,inc2,inc}
 }
-function Sequence(){
-    var counters=use_counters()
+export function Sequence(){
+    var counters=useCounters()
 
     function onClick(){
       counters.inc()

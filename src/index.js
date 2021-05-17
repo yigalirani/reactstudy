@@ -1,5 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
+import {SetStateFromRender} from './setstate_from_render.js'
+import {State} from './state.js'
+import {CheckboxTest} from './checkbox.js'
+import {Highlight} from './highlight.js'
+import {Clickers} from './clicker.js'
+import {Sequence} from './sequence.js'
+import {GroupTest} from './group.js'
+import {TabsPage} from './tabs.js'
+import {Parent} from './parent_child.js'
+import {Parent2} from './parent_child2.js'
+import {ModalPage} from './modal.js'
+import {ModalPage2} from './modal2.js'
+import {ContextDemo} from './context.js'
+import {ContextDemoProp} from './context.js'
+import {Game} from './game.js'
+import {Lister} from './lister.js'
+import {Svgdemo} from './svg.js'
+import {InputColor} from './color_grid.js'
+import {InputColorP} from './pair_test.js'
+import {ColorGrid} from './color_grid.js'
 function useTiker() {
     var [count,setCount]=React.useState(0);
 
@@ -81,28 +101,6 @@ function MyRouter({ routes,home }) {
     }
     return <div><Menu/><Choose/></div>
 }
-//{Index,Game,Lister }
-import {SetStateFromRender} from './setstate_from_render.js'
-import {State} from './state.js'
-import {CheckboxTest} from './checkbox.js'
-import {Highlight} from './highlight.js'
-import {Clickers} from './clicker.js'
-import {Sequence} from './sequence.js'
-import {GroupTest} from './group.js'
-import {TabsPage} from './tabs.js'
-import {Parent} from './parent_child.js'
-import {Parent2} from './parent_child2.js'
-import {ModalPage} from './modal.js'
-import {ModalPage2} from './modal2.js'
-import {ContextDemo} from './context.js'
-import {ContextDemoProp} from './context.js'
-import {Game} from './game.js'
-import {Lister} from './lister.js'
-import {Svgdemo} from './svg.js'
-import {InputColor} from './color_grid.js'
-import {InputColorP} from './pair_test.js'
-import {ColorGrid} from './color_grid.js'
-
 
 ReactDOM.render(<MyRouter home={Index} routes={{Index,SetStateFromRender,State,CheckboxTest,Highlight,Clickers,
   Sequence,GroupTest,TabsPage,Parent,Parent2,ModalPage,ModalPage2,ContextDemo,ContextDemoProp,Game,Lister,Svgdemo,Download,InputColor,InputColorP,ColorGrid}} />,document.getElementById('root'));

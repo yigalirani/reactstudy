@@ -17,7 +17,7 @@ function ModalButton2({show_set,name}){
 	}
 	return <button {...{onClick}}>{name}</button>
 }
-function ModalPage2(){
+export function ModalPage2(){
 	var [show,show_set]=React.useState('')
 	function make_model(){
 		if (show=='1')

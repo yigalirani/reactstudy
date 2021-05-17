@@ -8,11 +8,10 @@ function Child({lookup}){
     return <div>{count}</div>
 }
 
-function Parent(){
+export function Parent(){
     var [lookup,set_lookup]=React.useState({})
     return <div>
         <Child {...{lookup}}/>
-        <button onClick={_=>lookup.diff(1)}>up</button>
+        <button onClick={()=>lookup.diff(1)}>up</button>
     </div>
 }
-ReactDOM.render(<Parent />,document.querySelector('#root') );

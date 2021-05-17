@@ -1,9 +1,9 @@
 import React from 'react';
 function Panel({children,title}){
     var [count,set_count]=React.useState(0)
-    React.useEffect(_=>{
+    React.useEffect(()=>{
         console.log(title,'mount')
-        return _x=>console.log(title,'unmount')
+        return ()=>console.log(title,'unmount')
     },[])
     console.log(title,'rener')
     function onClick(){
@@ -18,7 +18,7 @@ function Tabs({children}){
             set_selected(x.key)
         }
         var className=(selected==x.key)?'tab selected':'tab'
-        return <div {...{className,onClick,key:x.key}}>{x.props.title||x.key}</div>
+        return <div key={x.key} {...{className,onClick}}>{x.props.title||x.key}</div>
     })
     var panels= children.map(x=>
         <div key={x.key} hidden={x.key!=selected}>{x}</div>
@@ -27,7 +27,7 @@ function Tabs({children}){
     var panel=children.find(x=>x.key==selected)
     return <><div>{tabs}</div>{panels}</>
 }
-function TabsPage(){
+export function TabsPage(){
     return <Tabs>
         <Panel key='the_tab1' title='The tab1 title'> tab1<b>rrr</b></Panel>
         <Panel key='the_tab2' title='The tab2 title'> tab2</Panel>

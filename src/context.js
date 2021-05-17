@@ -1,4 +1,5 @@
 import React from 'react';
+import {InputEnter,usePair} from './pair_test.js'
 const TheContext=React.createContext({})
 function Label(){
 	var context=React.useContext(TheContext)
@@ -9,10 +10,10 @@ function Setter(){
 	return <>setter<InputEnter {...{value:context.color}}/></>
 }
 
-function ContextDemo(){
+export function ContextDemo(){
 	var  color=usePair('red')
 	return <TheContext.Provider value={{color}}>
-		 <Setter/>
+    <Setter/>
          <Label/>
       </TheContext.Provider>
 }
@@ -26,11 +27,11 @@ function Setter2({context}){
 	return <>ContextDemoProp<InputEnter {...{value:context.color}}/></>
 }
 
-function ContextDemoProp(){
+export function ContextDemoProp(){
 	var  color=usePair('blue')
 	var context={color}
 	return <>
-		 <Setter2 {...{context}}/>
+    <Setter2 {...{context}}/>
          <Label2  {...{context}}/>
       </>
 }
