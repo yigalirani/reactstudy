@@ -21,6 +21,7 @@ import {InputColor} from './color_grid.js'
 import {InputColorP} from './pair_test.js'
 import {ColorGrid} from './color_grid.js'
 import {Reqursive} from './reqursive.js'
+import {MultiClick} from './multi_click.js'
 function useTiker() {
     var [count,setCount]=React.useState(0);
 
@@ -103,6 +104,6 @@ function MyRouter({ routes,home }) {
     return <div><Menu/><Choose/></div>
 }
 
-ReactDOM.render(<MyRouter home={Index} routes={{Index,Reqursive,SetStateFromRender,State,CheckboxTest,Highlight,Clickers,
+ReactDOM.render(<MyRouter home={Index} routes={{Index,MultiClick,Reqursive,SetStateFromRender,State,CheckboxTest,Highlight,Clickers,
   Sequence,GroupTest,TabsPage,Parent,Parent2,ModalPage,ModalPage2,ContextDemo,ContextDemoProp,Game,Lister,Svgdemo,Download,InputColor,InputColorP,ColorGrid}} />,document.getElementById('root'));
 //<AppRouter r={['Index','Game','Lister' ]}/>
