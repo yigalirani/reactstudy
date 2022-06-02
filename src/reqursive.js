@@ -12,10 +12,10 @@ function Node({depth}){
     return make_clicker()
   depth--
   
-  return <>{make_clicker()}<ul>
+  return <div>{make_clicker()}<ul>
     <li><Node {...{depth}}/></li>
     <li><Node {...{depth}}/></li>
-  </ul></>
+  </ul></div>
 }
 export function Reqursive(){
   var [value,set_value]=React.useState('1')

@@ -152,3 +152,43 @@ ol, ul {
 .clicker{
   background-color: pink;
 }
+.tooltip{
+  border: 1px solid red;
+  position: relative;
+  cursor: pointer;
+}
+.tooltip_popup{
+  position:absolute;
+  top: 10px;
+  left: 20px;
+  background: #fff81dc4;
+  padding: 10px;
+  border: 1px solid brown;
+  box-shadow: 2px 4px 11px 2px #8080808c;
+}
+
+.narrow{
+  max-width: 40px;
+  width: 40px;
+  position: relative;
+}
+td{
+  white-space: nowrap;
+  /* overflow: hidden; */
+}
+.inner_div{
+  background: red;
+  overflow: hidden;
+  max-width: 40px;
+}
+#tooltip{
+  position:absolute;
+  display:none;
+  top: 10px;
+  left: 20px;
+  z-index: 20;
+  background: #fff81ded;
+  padding: 10px;
+  border: 1px solid brown;
+  box-shadow: 2px 4px 11px 2px #8080808c;
+}
