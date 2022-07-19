@@ -27,6 +27,7 @@ import {ToolTipPage} from './tooltip.js'
 import {Memo} from './usememo.js'
 import {FunctionProps} from './function_props.js'
 import {ManyText} from './many_text.js'
+import {Order} from './order.js'
 
 function useTiker() {
     var [count,setCount]=React.useState(0);
@@ -110,6 +111,6 @@ function MyRouter({ routes,home }) {
     return <div><Menu/><Choose/></div>
 }
 
-ReactDOM.render(<MyRouter home={Index} routes={{Index,FunctionProps,ManyText,Memo,ToolTipPage,FileUpload,MultiClick,Reqursive,SetStateFromRender,State,CheckboxTest,Highlight,Clickers,
+ReactDOM.render(<MyRouter home={Index} routes={{Index,Order,FunctionProps,ManyText,Memo,ToolTipPage,FileUpload,MultiClick,Reqursive,SetStateFromRender,State,CheckboxTest,Highlight,Clickers,
   Sequence,GroupTest,TabsPage,Parent,Parent2,ModalPage,ModalPage2,ContextDemo,ContextDemoProp,Game,Lister,Svgdemo,Download,InputColor,InputColorP,ColorGrid}} />,document.getElementById('root'));
 //<AppRouter r={['Index','Game','Lister' ]}/>

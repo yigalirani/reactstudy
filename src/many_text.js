@@ -15,7 +15,7 @@ export function ManyText(){
   return <>
     <Input {...{value,set_value}}/>{depth}
     <button {...{onClick}}>up</button>
-    {numbers.map((x,i)=> <div>{x} </div>)}
+    {numbers.map(x=> <div>{x} </div>)}
     {numbers.map(x=> x+' ' )}    
     </>
 
