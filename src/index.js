@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
+import {ClickerChange} from './change_onclick.js'
 import {SetStateFromRender} from './setstate_from_render.js'
 import {State} from './state.js'
 import {CheckboxTest} from './checkbox.js'
@@ -29,6 +30,7 @@ import {FunctionProps} from './function_props.js'
 import {ManyText} from './many_text.js'
 import {Order} from './order.js'
 import {Before} from './before.js'
+import {NullElement} from './null_element.js'
 function useTiker() {
     var [count,setCount]=React.useState(0);
 
@@ -106,11 +108,11 @@ function MyRouter({ routes,home }) {
       return ''
     }
     function Menu(){
-      return <div className='menu'>{Object.keys(routes).map(x=><a key={x} className={calc_cls(x)} href={'#'+x}>{x}</a>)}</div>
-    }
+      return <div className='menu'>{Object.keys(routes).map(x=><a key={x} mydata={x+'44'} className={calc_cls(x)} href={'#'+x}>{x}</a>)}</div>
+    } 
     return <div><Menu/><Choose/></div>
 }
 
-ReactDOM.render(<MyRouter home={Index} routes={{Index,Before,Order,FunctionProps,ManyText,Memo,ToolTipPage,FileUpload,MultiClick,Reqursive,SetStateFromRender,State,CheckboxTest,Highlight,Clickers,
+ReactDOM.render(<MyRouter home={Index} routes={{Index,ClickerChange,NullElement,Before,Order,FunctionProps,ManyText,Memo,ToolTipPage,FileUpload,MultiClick,Reqursive,SetStateFromRender,State,CheckboxTest,Highlight,Clickers,
   Sequence,GroupTest,TabsPage,Parent,Parent2,ModalPage,ModalPage2,ContextDemo,ContextDemoProp,Game,Lister,Svgdemo,Download,InputColor,InputColorP,ColorGrid}} />,document.getElementById('root'));
 //<AppRouter r={['Index','Game','Lister' ]}/>
