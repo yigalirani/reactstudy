@@ -31,6 +31,63 @@ import {ManyText} from './many_text.js'
 import {Order} from './order.js'
 import {Before} from './before.js'
 import {NullElement} from './null_element.js'
+import { useState, useEffect } from "react";
+
+const items = [
+  { id: 1, label: "Apple" },
+  { id: 2, label: "Banana" },
+  { id: 3, label: "Cherry" },
+];
+
+export default function item_list() {
+  const [i, set_i] = useState(0);
+
+  useEffect(function () {
+    function handle_key(e) {
+      const { key } = e;
+
+      if (key === "ArrowDown") {
+        set_i(function (p) {
+          const ans = p < items.length - 1 ? p + 1 : p;
+          return ans;
+        });
+      }
+
+      if (key === "ArrowUp") {
+        set_i(function (p) {
+          const ans = p > 0 ? p - 1 : p;
+          return ans;
+        });
+      }
+    }
+
+    window.addEventListener("keydown", handle_key);
+
+    function cleanup() {
+      window.removeEventListener("keydown", handle_key);
+    }
+
+    return cleanup;
+  }, []);
+
+  const ans = (
+    <ul>
+      {items.map(function (item, n) {
+        const { id, label } = item;
+        const selected = n === i;
+
+        return (
+          <li key={id} style={{ fontWeight: selected ? "bold" : "normal" }}>
+            {selected ? "> " : ""}
+            {label}
+          </li>
+        );
+      })}
+    </ul>
+  );
+
+  return ans;
+}
 function useTiker() {
     var [count,setCount]=React.useState(0);
 
@@ -113,6 +170,39 @@ function MyRouter({ routes,home }) {
     return <div><Menu/><Choose/></div>
 }
 
-ReactDOM.render(<MyRouter home={Index} routes={{Index,ClickerChange,NullElement,Before,Order,FunctionProps,ManyText,Memo,ToolTipPage,FileUpload,MultiClick,Reqursive,SetStateFromRender,State,CheckboxTest,Highlight,Clickers,
+class Versons{
+  setters=new Set
+  version=0
+  constructor(){
+    setInterval(this.tick,1)
+  }
+  tick=()=>{
+    this.version++
+    for (const setter of this.setters){
+      setter(this.version)
+    }
+  }
+  subscribe(setter){
+    this.setters.add(setter)
+  }
+  unsubscribe(setter){
+    this.setters.delete(setter)
+  }  
+}
+const versions=new Versons()
+export function useGet_version(){
+  const [version,set_version]=useState(0)
+  useEffect(()=>{
+    versions.subscribe(set_version)
+    return ()=> versions.unsubscribe(set_version)
+  }, []);
+  return version
+}
+function VersonTest(){
+  const version=useGet_version()
+  return version
+}
+
+ReactDOM.render(<MyRouter home={Index} routes={{Index,VersonTest,item_list,ClickerChange,NullElement,Before,Order,FunctionProps,ManyText,Memo,ToolTipPage,FileUpload,MultiClick,Reqursive,SetStateFromRender,State,CheckboxTest,Highlight,Clickers,
   Sequence,GroupTest,TabsPage,Parent,Parent2,ModalPage,ModalPage2,ContextDemo,ContextDemoProp,Game,Lister,Svgdemo,Download,InputColor,InputColorP,ColorGrid}} />,document.getElementById('root'));
 //<AppRouter r={['Index','Game','Lister' ]}/>

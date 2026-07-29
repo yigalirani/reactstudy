@@ -14,6 +14,8 @@ ol, ul {
 }
 .menu{
   margin:7px;
+  display: flex;
+  flex-wrap: wrap;
 }
 .menu a{
   padding: 5px;

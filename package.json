@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "debug": "webpack --mode development",
-    "esbuild": "esbuild ./src/index.js --bundle --outfile=dist/esmain.js --loader:.js=jsx --external:react-dom --external:react "
+    "esbuild": "esbuild ./src/index.js --bundle --outfile=dist/esmain.js --loader:.js=jsx",
+    "httpserver"  : "http-server . -p 80"
   },
   "keywords": [],
   "author": "",
